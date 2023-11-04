@@ -45,6 +45,15 @@ const Navbar = () => {
     setCollapsed(true);
   };
 
+  const handlefavs =()=>{
+    if (isLoggedIn){
+      navigate("/favorites");
+    }else{
+      alert("Please Login To see Favorites");
+      navigate("/login");
+    }
+  }
+
   return (
     <div
       className={`sidebar ${collapsed ? 'collapsed' : ''}`}
@@ -66,7 +75,7 @@ const Navbar = () => {
               <AccountCircleRounded />
               <div className="icon-name">Profile</div>
             </div>
-            <div className="favorites-icon" onClick={() => navigate("/favorites")}>
+            <div className="favorites-icon" onClick={handlefavs}>
               <StarRounded />
               <div className="icon-name">Favorites</div>
             </div>
