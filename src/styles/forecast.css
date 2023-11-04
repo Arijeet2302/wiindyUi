@@ -1,0 +1,60 @@
+.forecast-header{
+    display: flex;
+}
+.forecast-main-header{
+    padding: 20px 0px 0px 20px;
+    font-size: 20px;
+}
+.select-optns{
+    display: flex;
+    margin: 15px 20px 20px 340px;
+    width: 110px;
+    height: 25px;
+    border-radius: 10px;
+    background-color: #4d7bb8;
+}
+.daily-dark{
+    background-color: #264A6E;
+    border-radius: 10px;
+    width: 50px;
+    cursor: pointer;
+    margin : 2px 3px 2px 5px;
+}
+.daily-light{
+    background-color: none;
+    cursor: pointer;
+    width: 50px;
+    margin : 2px 3px 2px 5px;
+}
+.daily{
+    margin :1px 1px 2px 2px;
+}
+.forecast-content{
+    display: flex;
+    padding : 20px 0px 0px 30px;
+    overflow: auto;
+}
+.forecast-content::-webkit-scrollbar{
+    background-color: #264A6E;
+    border-radius: 0px 0px 12px 12px;
+}
+.forecast-content::-webkit-scrollbar-thumb{
+    background-color: white;
+    border-radius: 0px 0px 12px 12px;
+}
+.forecast-content-container{
+    height: 175px;
+    width : 150px;
+    margin-inline: 10px;
+}
+img{
+    width: 60px;
+    height: 60px;
+    margin-top: 3px;
+}
+.forecast-temp{
+    margin-inline:15px;
+}
+.forecast-type{
+    margin-inline: 7px;
+}

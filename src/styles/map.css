@@ -1,0 +1,45 @@
+.main-container1{
+    height: 590px;
+}
+.map-container1{
+    display:flex;
+}
+.main-container1 h1{
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+.map-container1 .left-part1{
+    display: grid;
+    padding: 20px 0px 0px 50px;
+    width: 300px;
+}
+.main-container1 .left-part1 .btn-container1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    background: linear-gradient(to left, #085fb1, #597ba7);
+}
+.btn-container1 button{
+    height: 100px;
+    width: 100%;
+    border: white;
+    color: white;
+    background-color: rgba(224, 224, 224, 0.1);
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 30px;
+}
+.map-container1 .right-part1{
+    padding: 20px 0px 0px 0px;
+    background: none;
+}
+.right-part1 .map1{
+    width: 100px;
+    height: 70px; 
+    min-width: 100vh; 
+    min-height: 70vh;
+    margin-left: 100px;
+    border-radius: 12px;
+}

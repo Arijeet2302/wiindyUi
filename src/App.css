@@ -1,0 +1,8 @@
+.main-container{
+    background: linear-gradient(to right, #3467A8, #3C6AA6, #3767A5);
+    overflow-x: hidden;
+    height: 100vh;
+}
+.content{
+    margin-left: 55px;
+}

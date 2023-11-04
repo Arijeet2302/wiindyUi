@@ -1,0 +1,96 @@
+.sidebar {
+    background-color: #2C5992;
+    color: #fff;
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    transition: width 0.3s; 
+    z-index: 100;
+  }
+  
+  .collapsed {
+    width: 15px; 
+    overflow: hidden;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  li:hover {
+    text-decoration: underline;
+  }
+
+.icon-div{
+  margin : 10px;
+  padding-top : 20px; 
+  display: flex;
+  cursor: pointer;
+}
+.icon-name{
+  font-size: 20px;
+  padding-left: 10px;
+}
+.icon-div-collasped{
+  padding: 20px 0px 10px 0px;
+} 
+.option{
+  padding : 15px 0px 0px 0px ;
+}
+.option-collasped{
+  padding: 15px 0px 0px 0px;
+}
+.dashboard-icon{
+  margin : 10px;
+  padding: 0px 0px 10px 0px;
+  display: flex;
+  cursor: pointer;
+}
+.dashboard-icon-collasped{
+  padding: 0px 0px 10px 0px;
+} 
+.profile-icon{
+  margin : 10px;
+  padding: 10px 0px 10px 0px;
+  display: flex;
+  cursor: pointer;
+}
+.profile-icon-collasped{
+  padding: 10px 0px 10px 0px;
+} 
+.map-icon{
+  margin : 10px;
+  padding: 10px 0px 10px 0px;
+  display: flex;
+  cursor: pointer;
+}
+.map-icon-collasped{
+  padding: 10px 0px 10px 0px;
+} 
+.favorites-icon{
+  margin : 10px;
+  padding: 10px 0px 10px 0px;
+  display: flex;
+  cursor: pointer;
+}
+.favorites-icon-collasped{
+  padding: 10px 0px 10px 0px;
+} 
+.signout-icon{
+  margin : 10px;
+  padding: 10px 0px 10px 0px;
+  display: flex;
+  cursor: pointer;
+}
+.signout-icon-collasped{
+  padding: 10px 0px 10px 0px;
+} 
