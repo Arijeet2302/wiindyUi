@@ -13,10 +13,23 @@ import "./App.css"
 function App() {
   const [User, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [units, setUnits] = useState("metric");
+  const [GlobalCity, setGlobalCity] = useState("");
+  const [temperature, setTemp] = useState({label: "Temperature", title : "In Celcius (°C)"});
+  const [wind, setWind] = useState({label: "Wind Speed", title : "In Km/Hour"});
+  const [humidity, setHumidity] = useState({label: "Temperature", title : "In Pecentage (%)"});
+  const [ChartDay, setChartDay] = useState([]);
 
   return (
     <MainContext.Provider value={{
-      User, setUser, isLoggedIn, setIsLoggedIn
+      GlobalCity, setGlobalCity,
+      units, setUnits,
+      isLoggedIn, setIsLoggedIn,
+      User, setUser,
+      temperature, setTemp,
+      wind, setWind,
+      humidity, setHumidity,
+      ChartDay, setChartDay
     }}>
       <BrowserRouter>
         <div className="main-container">

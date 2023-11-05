@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
+import MainContext from "../services/MainContext";
 import { format } from "date-fns";
 import "../styles/chart.css";
 import { Line } from 'react-chartjs-2';
@@ -6,17 +7,13 @@ import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Filler, Tooltip);
 
 const Chart = () => {
-  const temperature = {
-    label: "Temperature", title : "In Celcius (°C)",
-    content : [32,34,27,42,25,33,34,36,32,31]}
-  const ChartDay = ["2022-08-30 15:00:00","2022-08-30 15:00:00","2022-08-30 15:00:00","2022-08-30 15:00:00","2022-08-30 15:00:00","2022-08-30 15:00:00","2022-08-30 15:00:00","2022-08-30 15:00:00","2022-08-30 15:00:00","2022-08-30 15:00:00"]
+  const { temperature, wind,  humidity, ChartDay } = useContext(MainContext);
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const [minX, setMinX] = useState(0);
   const [maxX, setMaxX] = useState(6);
   const [param, setParam] = useState(temperature);
 
-  
   useEffect(() => {
       setChart(chartRef.current);
     }, [])
@@ -28,7 +25,6 @@ const Chart = () => {
       return formattedDate;
     }
   }
-  
 
     const data = {
     labels: ChartDay.map((item) => setTime(item)),
@@ -103,8 +99,8 @@ const Chart = () => {
         <div className="chart-header">Summary</div>
         <div className="chart-btn">
         <button onClick={()=>setParam(temperature)}>Temperature</button>
-        <button onClick={()=>setParam(temperature)}>Humidity</button>
-        <button onClick={()=>setParam(temperature)}>Wind</button>
+        <button onClick={()=>setParam(humidity)}>Humidity</button>
+        <button onClick={()=>setParam(wind)}>Wind</button>
         </div>
       </div>
       <div className="chart-body">
