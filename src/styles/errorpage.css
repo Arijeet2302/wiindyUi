@@ -1,0 +1,27 @@
+.error-div-main{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error-header{
+    width: 150px;
+    font-size: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.text-content{
+    padding: 10px;
+}
+.goback-btn{
+    margin:10px;
+    font-size: 20px ;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: limegreen;
+    color: white;
+    cursor: pointer;
+}

@@ -10,6 +10,7 @@ import { RiWindyFill } from "react-icons/ri";
 import MainContext from "../services/MainContext";
 import Forecast from "./Forecast";
 import Chart from "./Chart";
+import ErrorPage from "./ErrorPage";
 import axios from "axios";
 
 const Dashboard = () => {
@@ -280,7 +281,7 @@ const Dashboard = () => {
         </div>
         <div className="chart-container"><Chart /></div>
       </div>
-      </>):(<div></div>)}
+      </>):(<div><ErrorPage/></div>)}
     </div>
   )
 }
