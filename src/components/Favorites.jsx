@@ -1,17 +1,73 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/favorites.css";
 import MainContext from "../services/MainContext";
 import { AccountCircleRounded, DeleteRounded } from "@mui/icons-material";
+import axios from "axios";
 
 const Favorites = () => {
-  const { User } = useContext(MainContext);
-  const weatherData = [
-    { id: 1, cityname: "New York", temperature: 72, weather: "Sunny" },
-    { id: 2, cityname: "Los Angeles", temperature: 85, weather: "Clear" },
-    { id: 3, cityname: "Chicago", temperature: 65, weather: "Cloudy" },
-    { id: 4, cityname: "Miami", temperature: 88, weather: "Partly Cloudy" },
-    { id: 5, cityname: "Miami", temperature: 88, weather: "Partly Cloudy" },
-  ];
+  const [favItems, setFavItems] = useState([]);
+  const [NewFavItems, setNewFavItems] = useState([]);
+  const { User, setGlobalCity } = useContext(MainContext);
+  const navigate = useNavigate();
+
+  const API_key = "5ed629dc1cc4bf3e82808a28e85384dd";
+  
+
+  useEffect(() => {
+      axios.post("https://wiindy-backend.vercel.app/api/user/favorites", {
+          username: User?.displayName
+      })
+          .then((res) => {
+              setFavItems(res.data);
+          })
+          .catch((err) => {
+              console.log("error while showing data", err);
+          })
+  }, [User]);
+  
+
+  useEffect(() => {
+      const fetchData = async () => {
+        const updatedFavItems = await Promise.all(
+          favItems.map(async (item) => {
+            try {
+              const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${item.cityname}&appid=${API_key}&units=metric`);
+              item.temp = Math.round(response.data?.main?.temp);
+              item.weather = response.data?.weather[0]?.main;
+              return item;
+            } catch (err) {
+              console.log(err);
+              return item;
+            }
+          })
+        );
+  
+         setNewFavItems(updatedFavItems);
+      };
+  
+      fetchData();
+    }, [favItems]);
+
+
+    const HandleShow =(name)=>{
+      setGlobalCity(name);
+      navigate("/");
+    }
+
+    const handleDelete = async(cityName)=>{
+      try {
+        const res = await axios.delete('https://wiindy-backend.vercel.app/api/user/delete', {
+          data: {
+            username: User.displayName,
+            cityname: cityName,
+          },
+        });
+        alert(res.data.msg);
+      } catch (err) {
+        console.error('Error while removing from favorites', err);
+      }
+    }
 
   return (
     <div className="favorites-main">
@@ -21,14 +77,14 @@ const Favorites = () => {
         <div>{User?.displayName}</div>
       </div>
       <div className="favorites-main-content">
-        {weatherData.map((item) => (
-          <div className="fav-body" key={item.id}>
+        {NewFavItems.map((item) => (
+          <div className="fav-body" key={item._id} onClick={()=>HandleShow(item.cityname)}>
             <div className="fav-cityname">{item.cityname}</div>
             <div className='details-container'>
-              <div className="fav-temp">{item.temperature}°C</div>
+              <div className="fav-temp">{item.temp}°C</div>
               <div className="fav-weather">{item.weather}</div>
             </div>
-            <div><DeleteRounded/></div>
+            <div onClick={()=>handleDelete(item.cityname)}><DeleteRounded/></div>
           </div>
         ))}
       </div>

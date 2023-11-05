@@ -10,6 +10,7 @@ import { RiWindyFill } from "react-icons/ri";
 import MainContext from "../services/MainContext";
 import Forecast from "./Forecast";
 import Chart from "./Chart";
+import axios from "axios";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -19,8 +20,7 @@ const Dashboard = () => {
   const [icon, setIcon] = useState(object.rain);
   const [city, setCity] = useState('');
   const [toggle, setToggle] = useState(true);
-  // const [favicon, setFavicon] = useState(false);
-  // const [favItems, setFavItems] = useState([]);
+  const [favicon, setFavicon] = useState(true);
   const buttonRef = useRef(null);
 
   const API_key = '5ed629dc1cc4bf3e82808a28e85384dd';
@@ -61,7 +61,7 @@ const Dashboard = () => {
         setWeather(data);
         setUserWeather(data.weather[0]);
         setGlobalCity(data.name);
-        // setFavicon(false);
+        setFavicon(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -148,6 +148,40 @@ const Dashboard = () => {
     return timeValue.toLocaleTimeString(undefined, optns);
   };
 
+  const handleAddFav = async () => {
+      try {
+        const res = await axios.post('https://wiindy-backend.vercel.app/api/user/add', {
+          username: User.displayName,
+          uid: User.uid,
+          cityname: GlobalCity,
+        });
+        setFavicon(false);
+        alert(res.data.msg);
+      } catch (err) {
+        console.error('Error while adding to favorites', err);
+    }
+  }
+
+  useEffect(() => {
+    const fetchFavoritesAndCheckFavoriteStatus = async () => {
+      if (User) {
+        try {
+          const res = await axios.post('https://wiindy-backend.vercel.app/api/user/favorites', {
+            username: User.displayName,
+          });
+          const favoriteCities = res.data;
+          const isFavorite = favoriteCities.some(item => item.cityname === GlobalCity);
+          setFavicon(!isFavorite);
+        } catch (err) {
+          console.log('Error while fetching favorites', err);
+        }
+      }
+    };
+  
+    fetchFavoritesAndCheckFavoriteStatus();
+  }, [User, GlobalCity]);
+  
+
   return (
     <div className="dashboard">
       <div className="upper-part">
@@ -182,7 +216,8 @@ const Dashboard = () => {
             <div className="middle-header">Current Weather</div>
             <div className="maincityname">
               <h2>{GlobalCity}</h2>
-              <div className="favicon">+ Add to favorites</div>
+              {favicon ? (<div className="favicon" onClick={handleAddFav}>+ Add to favorites</div>) 
+              :(<div></div>)}
             </div>
             <div className="main-time">{currentday()}</div>
           </div>
