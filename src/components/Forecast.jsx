@@ -20,12 +20,7 @@ const Forecast = () => {
         }else{
           setForecastState(true);
         }
-
-        if(option){
-            setOption(false);
-        }else{
-            setOption(true);
-        }
+        setOption(!option);
     }
 
   useEffect(() => {
