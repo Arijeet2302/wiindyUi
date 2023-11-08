@@ -3,7 +3,9 @@ import "../styles/nav.css"
 import { useContext, useState,useEffect } from "react";
 import MainContext from "../services/MainContext";
 import { auth } from "../services/firebase";
-import { AccountCircleRounded, StarRounded, GridViewRounded, MapOutlined, LogoutOutlined, CloudOutlined } from "@mui/icons-material";
+import cloud_logoCopy from "../assets/cloud_logoCopy.png"
+// import wiindylogobig from "../assets/wiindylogobig.png"
+import { AccountCircleRounded, StarRounded, GridViewRounded, MapOutlined, LogoutOutlined } from "@mui/icons-material";
 
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -63,7 +65,7 @@ const Navbar = () => {
       {!collapsed ? (
         <>
           <div className="icon-div">
-            <CloudOutlined />
+            <img className="wiindylogo" src={cloud_logoCopy} />
             <div className="icon-name">Wiindy</div>
           </div>
           <div className="option">
@@ -91,7 +93,7 @@ const Navbar = () => {
         </>
       ) : (
         <>
-          <div className="icon-div-collasped"><CloudOutlined /></div>
+          <div className="icon-div-collasped"><img className="wiindylogo-collasped" src={cloud_logoCopy}/></div>
           <div className="option-collasped">
             <div className="dashboard-icon-collasped"><GridViewRounded /></div>
             <div className="profile-icon-collasped"><AccountCircleRounded /></div>

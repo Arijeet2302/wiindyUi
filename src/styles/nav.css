@@ -1,3 +1,16 @@
+.wiindylogo{
+  width: 23px;
+  height: 23px;
+}
+.wiindylogo-collasped{
+  height: 2rem;
+  width: 2rem;
+  padding: 10px 0px 10px 0px; 
+}
+.wiindylogo-collasped{
+  width: 23px;
+  height: 23px;
+}
 .sidebar {
     background-color: #2C5992;
     color: #fff;
@@ -40,9 +53,6 @@
   font-size: 20px;
   padding-left: 10px;
 }
-.icon-div-collasped{
-  padding: 20px 0px 10px 0px;
-} 
 .option{
   padding : 15px 0px 0px 0px ;
 }
