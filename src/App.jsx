@@ -8,6 +8,7 @@ import Signup from "./components/Signup"
 import Login from "./components/Login"
 import Map from "./components/Map"
 import "./App.css"
+import Profile from "./components/Profile";
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
   const [wind, setWind] = useState({label: "Wind Speed", title : "In Km/Hour"});
   const [humidity, setHumidity] = useState({label: "Temperature", title : "In Pecentage (%)"});
   const [ChartDay, setChartDay] = useState([]);
+
+  const user = User?.displayName;
 
   return (
     <MainContext.Provider value={{
@@ -41,6 +44,7 @@ function App() {
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/favorites" element={<Favorites />} />
               <Route exact path="/map" element={<Map />} />
+              <Route exact path={`/${user}`} element={<Profile />} />
             </Routes>
           </div>
         </div>

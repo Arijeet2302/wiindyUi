@@ -1,0 +1,36 @@
+.main-profile-container{
+    color: white;
+}
+.profile-name-page{
+    display: flex;
+    align-items: center;
+    margin: 50px 20px 20px 20px;
+    font-size: 3rem;
+    color: white;
+}
+#abc1{
+    font-size: 3rem;
+}
+.profile-main-content{
+    margin: 30px;
+    font-size: 20px;
+}
+.username-main{
+    margin: 10px 10px 10px 0px;
+}
+.user-email{
+    margin: 10px 10px 10px 0px;
+}
+.date-created{
+    margin: 10px 10px 10px 0px;
+}
+.sign-out-btn{
+    margin: 10px 10px 10px 0px;
+    font-size: 20px ;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: limegreen;
+    color: white;
+    cursor: pointer;
+}

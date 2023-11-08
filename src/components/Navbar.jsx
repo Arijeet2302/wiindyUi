@@ -3,14 +3,14 @@ import "../styles/nav.css"
 import { useContext, useState,useEffect } from "react";
 import MainContext from "../services/MainContext";
 import { auth } from "../services/firebase";
-import cloud_logoCopy from "../assets/cloud_logoCopy.png"
-// import wiindylogobig from "../assets/wiindylogobig.png"
+import cloud_logoCopy from "../assets/cloud_logoCopy.png";
 import { AccountCircleRounded, StarRounded, GridViewRounded, MapOutlined, LogoutOutlined } from "@mui/icons-material";
 
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
-  const { setUser, isLoggedIn, setIsLoggedIn } = useContext(MainContext);
+  const { User, setUser, isLoggedIn, setIsLoggedIn } = useContext(MainContext);
+  const user = User?.displayName;
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -73,10 +73,11 @@ const Navbar = () => {
               <GridViewRounded />
               <div className="icon-name">Dashboard</div>
             </div>
-            <div className="profile-icon">
+            { isLoggedIn ? (
+            <div className="profile-icon" onClick={() => navigate(`/${user}`)}>
               <AccountCircleRounded />
               <div className="icon-name">Profile</div>
-            </div>
+            </div>) : (<div></div>)}
             <div className="favorites-icon" onClick={handlefavs}>
               <StarRounded />
               <div className="icon-name">Favorites</div>
@@ -96,7 +97,8 @@ const Navbar = () => {
           <div className="icon-div-collasped"><img className="wiindylogo-collasped" src={cloud_logoCopy}/></div>
           <div className="option-collasped">
             <div className="dashboard-icon-collasped"><GridViewRounded /></div>
-            <div className="profile-icon-collasped"><AccountCircleRounded /></div>
+            {isLoggedIn ? (<div className="profile-icon-collasped"><AccountCircleRounded /></div>)
+            :(<div></div>)}
             <div className="favorites-icon-collasped"><StarRounded /></div>
             <div className="map-icon-collasped"><MapOutlined /></div>
             { !isLoggedIn ? (<div></div>):
