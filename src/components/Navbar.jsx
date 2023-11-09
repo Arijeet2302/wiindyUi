@@ -10,7 +10,7 @@ const Navbar = () => {
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
   const { User, setUser, isLoggedIn, setIsLoggedIn } = useContext(MainContext);
-  const user = User?.displayName;
+  const user = User?.uid;
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
