@@ -16,7 +16,7 @@ const Favorites = () => {
 
   useEffect(() => {
       axios.post("https://wiindy-backend.vercel.app/api/user/favorites", {
-          username: User?.displayName
+          uid: User?.uid
       })
           .then((res) => {
               setFavItems(res.data);
@@ -59,7 +59,7 @@ const Favorites = () => {
       try {
         const res = await axios.delete('https://wiindy-backend.vercel.app/api/user/delete', {
           data: {
-            username: User.displayName,
+            uid: User.uid,
             cityname: cityName,
           },
         });

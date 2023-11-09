@@ -168,7 +168,7 @@ const Dashboard = () => {
       if (User) {
         try {
           const res = await axios.post('https://wiindy-backend.vercel.app/api/user/favorites', {
-            username: User.displayName,
+            uid: User.uid,
           });
           const favoriteCities = res.data;
           const isFavorite = favoriteCities.some(item => item.cityname === GlobalCity);
