@@ -11,7 +11,7 @@ const Favorites = () => {
   const { User, setGlobalCity } = useContext(MainContext);
   const navigate = useNavigate();
 
-  const API_key = "5ed629dc1cc4bf3e82808a28e85384dd";
+  const API_key = import.meta.env.VITE_REACT_APP_WEATHERAPI_KEY;
   
 
   useEffect(() => {

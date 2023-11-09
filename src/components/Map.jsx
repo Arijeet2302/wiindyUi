@@ -6,7 +6,7 @@ import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
 
 const WeatherMap = () => {
-  const API_key = "5ed629dc1cc4bf3e82808a28e85384dd";
+  const API_key = import.meta.env.VITE_REACT_APP_WEATHERAPI_KEY;
   const [layer, setLayer] = useState("pressure_new");
   const mapRef = useRef(null);
   const layers = [

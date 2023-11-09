@@ -23,8 +23,8 @@ const Dashboard = () => {
   const [toggle, setToggle] = useState(true);
   const [favicon, setFavicon] = useState(true);
   const buttonRef = useRef(null);
-
-  const API_key = '5ed629dc1cc4bf3e82808a28e85384dd';
+  
+  const API_key = import.meta.env.VITE_REACT_APP_WEATHERAPI_KEY;
 
   useEffect(() => {
     if (!toggle) {

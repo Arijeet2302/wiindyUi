@@ -10,7 +10,7 @@ const Forecast = () => {
     const [ForecastState,setForecastState] = useState(true);
     const {GlobalCity, units, temperature, wind, humidity, setTemp, setWind, setHumidity, setChartDay } = useContext(MainContext);
 
-  const API_Key = '5ed629dc1cc4bf3e82808a28e85384dd';
+  const API_Key = import.meta.env.VITE_REACT_APP_WEATHERAPI_KEY;
   const dailyTime = "09:00:00";
   const dailyForecast = hourlyForecast.filter((data) => data.dt_txt.includes(dailyTime));
 
