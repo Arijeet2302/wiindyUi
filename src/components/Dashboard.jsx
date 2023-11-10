@@ -23,7 +23,7 @@ const Dashboard = () => {
   const [toggle, setToggle] = useState(true);
   const [favicon, setFavicon] = useState(true);
   const buttonRef = useRef(null);
-  
+
   const API_key = import.meta.env.VITE_REACT_APP_WEATHERAPI_KEY;
 
   useEffect(() => {
@@ -63,6 +63,7 @@ const Dashboard = () => {
         setUserWeather(data.weather[0]);
         setGlobalCity(data.name);
         setFavicon(false);
+        setCity('');
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -100,15 +101,25 @@ const Dashboard = () => {
       case parseInt(id / 100) === 7:
         setIcon(object.haze);
         break;
+      case 711:
+        setIcon(object.foggy);
+        break;
+      case 741:
+        setIcon(object.foggy);
+        break;
       case parseInt(id / 100) === 5:
         setIcon(object.rain);
         break;
       case parseInt(id / 100) === 2:
         setIcon(object.thunderstorm);
         break;
-        case 802:
-        case 803:
-        case 804:
+      case 802:
+        setIcon(object.clouds);
+        break;
+      case 804:
+        setIcon(object.clouds);
+        break;
+      case 803:
         setIcon(object.clouds);
         break;
       case 801:
@@ -150,16 +161,16 @@ const Dashboard = () => {
   };
 
   const handleAddFav = async () => {
-      try {
-        const res = await axios.post('https://wiindy-backend.vercel.app/api/user/add', {
-          username: User.displayName,
-          uid: User.uid,
-          cityname: GlobalCity,
-        });
-        setFavicon(false);
-        alert(res.data.msg);
-      } catch (err) {
-        console.error('Error while adding to favorites', err);
+    try {
+      const res = await axios.post('https://wiindy-backend.vercel.app/api/user/add', {
+        username: User.displayName,
+        uid: User.uid,
+        cityname: GlobalCity,
+      });
+      setFavicon(false);
+      alert(res.data.msg);
+    } catch (err) {
+      console.error('Error while adding to favorites', err);
     }
   }
 
@@ -178,10 +189,10 @@ const Dashboard = () => {
         }
       }
     };
-  
+
     fetchFavoritesAndCheckFavoriteStatus();
   }, [User, GlobalCity]);
-  
+
 
   return (
     <div className="dashboard">
@@ -211,77 +222,77 @@ const Dashboard = () => {
       </div>
       {weather.main ? (
         <>
-      <div className="middle-part">
-        <div className="main-temp">
-          <div className="main-city">
-            <div className="middle-header">Current Weather</div>
-            <div className="maincityname">
-              <h2>{GlobalCity}</h2>
-              {favicon ? (<div className="favicon" onClick={handleAddFav}>+ Add to favorites</div>) 
-              :(<div></div>)}
-            </div>
-            <div className="main-time">{currentday()}</div>
-          </div>
-          <div className="basic-weather">
-            <img className="weather-icon" src={icon} />
-            <div className="basic-temp">
-              <div className="big-temp">
-              <div className="weather-main-temp">{Math.round(weather.main.temp)}
-              { toggle ? (<div className="basic-unit">°C</div>) :(<div className="basic-unit">°F</div>)}
+          <div className="middle-part">
+            <div className="main-temp">
+              <div className="main-city">
+                <div className="middle-header">Current Weather</div>
+                <div className="maincityname">
+                  <h2>{GlobalCity}</h2>
+                  {favicon ? (<div className="favicon" onClick={handleAddFav}>+ Add to favorites</div>)
+                    : (<div></div>)}
                 </div>
-                <div className="basic-weather-type">{(userWeather.description).toUpperCase()}</div>
+                <div className="main-time">{currentday()}</div>
+              </div>
+              <div className="basic-weather">
+                <img className="weather-icon" src={icon} />
+                <div className="basic-temp">
+                  <div className="big-temp">
+                    <div className="weather-main-temp">{Math.round(weather.main.temp)}
+                      {toggle ? (<div className="basic-unit">°C</div>) : (<div className="basic-unit">°F</div>)}
+                    </div>
+                    <div className="basic-weather-type">{(userWeather.description).toUpperCase()}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="unit-change-btn">
+                <button className="unit-btn" onClick={() => setToggle(true)}>Celcius</button>
+                <button className="unit-btn" onClick={() => setToggle(false)}>Farenheite</button>
+              </div>
+            </div>
+            <div className="forecast-container"><Forecast /></div>
+            <div className="current-weather-details">
+              <div className="weather-details-header">Weather Details</div>
+              <div className="details-div">
+                <div className="deatils-icon"><IoMdWater size={20} /></div>
+                <div className="details">Humidity</div>
+                <div className="details-value">{weather.main.humidity} %</div>
+              </div>
+              <div className="details-div">
+                <div className="deatils-icon"><BsThermometerSun size={20} /></div>
+                <div className="details">Pressure </div>
+                <div className="details-value">{weather.main.pressure} Hpa</div>
+              </div>
+              <div className="details-div">
+                <div className="deatils-icon"><RiWindyFill size={20} /></div>
+                <div className="details">Wind Speed</div>
+                <div className="details-value">{Math.round(weather.wind.speed * 3.6)} KM/hr</div>
+              </div>
+              <div className="details-div">
+                <div className="deatils-icon"><BsEyeFill size={20} /></div>
+                <div className="details">Visibility</div>
+                <div className="details-value">{weather.visibility / 1000} KM</div>
+              </div>
+              <div className="details-div">
+                <div className="deatils-icon"><TbSunrise size={20} /></div>
+                <div className="details">Sunrise</div>
+                <div className="details-value">{setSun(weather?.sys.sunrise)}</div>
+              </div>
+              <div className="details-div">
+                <div className="deatils-icon"><TbSunset size={20} /></div>
+                <div className="details">Sunset</div>
+                <div className="details-value">{setSun(weather?.sys.sunset)}</div>
               </div>
             </div>
           </div>
-          <div className="unit-change-btn">
-            <button className="unit-btn" onClick={() => setToggle(true)}>Celcius</button>
-            <button className="unit-btn" onClick={() => setToggle(false)}>Farenheite</button>
+          <div className="bottom-part">
+            <div className="map-container">
+              <img className="img-container" src="https://images.pexels.com/photos/1768538/pexels-photo-1768538.jpeg?auto=compress&cs=tinysrgb&w=400" />
+              <div className="map-content">Explore Global Map of Wind, Weather and Other Conditions</div>
+              <div id="map-btn" onClick={() => navigate("/map")}>Get Started</div>
+            </div>
+            <div className="chart-container"><Chart /></div>
           </div>
-        </div>
-        <div className="forecast-container"><Forecast /></div>
-        <div className="current-weather-details">
-          <div className="weather-details-header">Weather Details</div>
-          <div className="details-div">
-            <div className="deatils-icon"><IoMdWater size={20} /></div>
-            <div className="details">Humidity</div>
-            <div className="details-value">{weather.main.humidity} %</div>
-          </div>
-          <div className="details-div">
-            <div className="deatils-icon"><BsThermometerSun size={20} /></div>
-            <div className="details">Pressure </div>
-            <div className="details-value">{weather.main.pressure} Hpa</div>
-          </div>
-          <div className="details-div">
-            <div className="deatils-icon"><RiWindyFill size={20} /></div>
-            <div className="details">Wind Speed</div>
-            <div className="details-value">{Math.round(weather.wind.speed * 3.6)} KM/hr</div>
-          </div>
-          <div className="details-div">
-            <div className="deatils-icon"><BsEyeFill size={20} /></div>
-            <div className="details">Visibility</div>
-            <div className="details-value">{weather.visibility / 1000} KM</div>
-          </div>
-          <div className="details-div">
-            <div className="deatils-icon"><TbSunrise size={20} /></div>
-            <div className="details">Sunrise</div>
-            <div className="details-value">{setSun(weather?.sys.sunrise)}</div>
-          </div>
-          <div className="details-div">
-            <div className="deatils-icon"><TbSunset size={20} /></div>
-            <div className="details">Sunset</div>
-            <div className="details-value">{setSun(weather?.sys.sunset)}</div>
-          </div>
-        </div>
-      </div>
-      <div className="bottom-part">
-        <div className="map-container">
-          <img className="img-container" src="https://images.pexels.com/photos/1768538/pexels-photo-1768538.jpeg?auto=compress&cs=tinysrgb&w=400" />
-          <div className="map-content">Explore Global Map of Wind, Weather and Other Conditions</div>
-          <div id="map-btn" onClick={() => navigate("/map")}>Get Started</div>
-        </div>
-        <div className="chart-container"><Chart /></div>
-      </div>
-      </>):(<div><ErrorPage/></div>)}
+        </>) : (<div><ErrorPage /></div>)}
     </div>
   )
 }
