@@ -6,6 +6,7 @@ import sunny from "../assets/sunny.png";
 import snow from "../assets/snow.png";
 import clouds from "../assets/clouds.png";
 import windy from "../assets/windy.png";
+import cloudy from "../assets/cloudy.png";
 
 const object = {
     rain : rain,
@@ -16,5 +17,6 @@ const object = {
     snow : snow,
     clouds : clouds,
     windy : windy,
+    cloudy : cloudy,
 }
 export {object};

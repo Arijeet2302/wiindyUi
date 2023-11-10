@@ -70,7 +70,11 @@
     border-radius: 12px;
 }
 .maincityname{
+    max-height: 27px;
     display: flex;
+    white-space: nowrap; 
+    overflow: hidden;    
+    text-overflow: ellipsis; 
 }
 .favicon{
     width: 200px;
@@ -87,6 +91,7 @@
     margin : 0px;
 }
 .basic-weather{
+    height: 110px;
     display: flex;
     margin: 10px 0px 10px 30px;
 }

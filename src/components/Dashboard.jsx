@@ -95,36 +95,36 @@ const Dashboard = () => {
   }, [GlobalCity, API_key, units]);
 
   useEffect(() => {
-    switch (userWeather?.main) {
-      case 'Haze':
+    const id = userWeather?.id;
+    switch (id) {
+      case parseInt(id / 100) === 7:
         setIcon(object.haze);
         break;
-      case 'Mist':
-        setIcon(object.haze);
-        break;
-      case 'Rain':
+      case parseInt(id / 100) === 5:
         setIcon(object.rain);
         break;
-      case 'Thunderstorm':
+      case parseInt(id / 100) === 2:
         setIcon(object.thunderstorm);
         break;
-      case 'Clouds':
+        case 802:
+        case 803:
+        case 804:
         setIcon(object.clouds);
         break;
-      case 'Snow':
+      case 801:
+        setIcon(object.cloudy);
+        break;
+      case parseInt(id / 100) === 6:
         setIcon(object.snow);
         break;
-      case 'Drizzle':
+      case parseInt(id / 100) === 3:
         setIcon(object.rain);
         break;
-      case 'Fog':
-        setIcon(object.foggy);
-        break;
-      case 'Dust':
-        setIcon(object.windy);
+      case 800:
+        setIcon(object.sunny);
         break;
       default:
-        setIcon(object.clouds);
+        setIcon(object.sunny);
         break;
     }
   }, [userWeather]);
