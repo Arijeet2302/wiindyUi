@@ -43,7 +43,7 @@ Wiindy is a modern weather forecast app built using ReactJS with Vite as the bun
    ```bash
    cd wiindy-ui
 
-3. Insatll Dependencies:
+3. Install Dependencies:
 
    ```bash
    npm install
