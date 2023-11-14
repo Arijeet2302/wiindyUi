@@ -37,6 +37,7 @@ Wiindy is a modern weather forecast app built using ReactJS with Vite as the bun
 
    ```bash
    git clone https://github.com/your-username/wiindy-ui.git
+   ```
 
 2. Navigate to Project:
 
