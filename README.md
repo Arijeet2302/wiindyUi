@@ -1,6 +1,6 @@
-# Wiindy - Weather Forecast App
+# ![Wiindy Logo](./src/assets/cloud_logoCopy.png) Wiindy - Weather Forecast App
 
-![Wiindy Logo](./src/assets/cloud_logoCopy.png)
+
 
 ## Overview
 
@@ -53,7 +53,7 @@ Wiindy is a modern weather forecast app built using ReactJS with Vite as the bun
 2. Obtain an API key from OpenWeatherMap for accessing weather data.
 3. Configure the app by creating a .env file in the root of the project:
 
-VITE_REACT_APP_WEATHERAPI_KEY = Your-weather-api-key
+    VITE_REACT_APP_WEATHERAPI_KEY = Your-weather-api-key
 
 
 ## Usage
