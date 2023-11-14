@@ -1,4 +1,4 @@
-# (./src/assets/cloud_logoCopy.png) Wiindy - Weather Forecast App
+## ![Wiindy Logo](./src/assets/cloud_logoCopy.png) Wiindy - Weather Forecast App
 
 
 
