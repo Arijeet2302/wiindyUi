@@ -98,7 +98,7 @@ const Dashboard = () => {
   useEffect(() => {
     const id = userWeather?.id;
     switch (id) {
-      case parseInt(id / 100) === 7:
+      case 721:
         setIcon(object.haze);
         break;
       case 711:
