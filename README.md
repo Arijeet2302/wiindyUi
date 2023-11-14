@@ -1,6 +1,8 @@
 ## <img src="./src/assets/cloud_logoCopy.png" alt="Wiindy Logo" width="30"/> Wiindy - Weather Forecast App
 
 
+![App_demo](./src//assets/App_Demo.png)
+
 ## Overview
 
 Wiindy is a modern weather forecast app built using ReactJS with Vite as the bundler. This user interface repository focuses on the frontend aspects of the application. Wiindy provides users with accurate and up-to-date weather information, including the current weather based on their location, 5-day forecasting, interactive maps, and detailed weather charts. Additionally, users can personalize their experience by adding favorite cities to their profile.
