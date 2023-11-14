@@ -73,4 +73,4 @@ Deplyed at Vercel app : https://wiindy-ui.vercel.app.
 
 ## Backend API 
 
-https://github.com/Arijeet2302/wiindy-backend
+https://github.com/Arijeet2302/wiindy-backend.git
