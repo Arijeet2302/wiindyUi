@@ -1,4 +1,4 @@
-## <img src="./src/assets/cloud_logoCopy.png" alt="Wiindy Logo" width="48"/> Wiindy - Weather Forecast App
+## <img src="./src/assets/cloud_logoCopy.png" alt="Wiindy Logo" width="30"/> Wiindy - Weather Forecast App
 
 
 ## Overview
