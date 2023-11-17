@@ -16,7 +16,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 0px;
     margin: 50px 0px 0px 375px;
   }
   
@@ -26,6 +26,10 @@
     outline: none;
     padding: 10px 15px;
     color: #000;
+    margin: 10px 0px 10px 0px;
+  }
+  input:hover{
+    border-color: #ccc;
   }
   .footer {
     display: flex;
@@ -74,3 +78,9 @@
     font-size: 1rem;
     text-decoration: none;
   }
+.formlabel{
+  font-weight: 700;
+  font-size: 1rem;
+  color: #313131;
+  margin: 30px 0px 0px 0px;
+}

@@ -49,3 +49,11 @@
     justify-content: center;
     align-items: center;
 }
+.no-favs{
+    margin: 0px 0px 0px 50px;
+    color: white;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

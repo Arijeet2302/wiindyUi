@@ -10,7 +10,7 @@ const Navbar = () => {
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
   const { User, setUser, isLoggedIn, setIsLoggedIn } = useContext(MainContext);
-  const user = User?.uid;
+  const user = User?.displayName;
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -33,6 +33,7 @@ const Navbar = () => {
   const handleSignout = async ()=>{
     try {
       await auth.signOut();
+      navigate("/");
       window.location.reload();
     } catch (error) {
       console.error('Error during logout:', error);

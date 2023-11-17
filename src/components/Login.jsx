@@ -35,7 +35,7 @@ const Login= ()=> {
     <div className={styles.container}>
       <div className={styles.innerBox}>
         <h1 className={styles.heading}>Login</h1>
-
+        <div className={styles.formlabel}>Email</div>
         <input
           label="Email"
           onChange={(event) =>
@@ -43,6 +43,7 @@ const Login= ()=> {
           }
           placeholder="Enter email address"
         />
+        <div className={styles.formlabel}>Password</div>
         <input
           label="Password"
           type="password"

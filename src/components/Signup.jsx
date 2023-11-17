@@ -42,7 +42,7 @@ const Signup = () => {
     <div className={styles.container}>
       <div className={styles.innerBox}>
         <h1 className={styles.heading}>Signup</h1>
-
+        <div className={styles.formlabel}>Name</div>
         <input
           label="Name"
           placeholder="Enter your name"
@@ -50,6 +50,7 @@ const Signup = () => {
             setValues((prev) => ({ ...prev, name: event.target.value }))
           }
         />
+        <div className={styles.formlabel}>Email</div>
         <input
           label="Email"
           placeholder="Enter email address"
@@ -57,6 +58,7 @@ const Signup = () => {
             setValues((prev) => ({ ...prev, email: event.target.value }))
           }
         />
+        <div className={styles.formlabel}>Password</div>
         <input
           label="Password"
           type="password"

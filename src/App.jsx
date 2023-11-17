@@ -21,7 +21,7 @@ function App() {
   const [humidity, setHumidity] = useState({label: "Temperature", title : "In Pecentage (%)"});
   const [ChartDay, setChartDay] = useState([]);
 
-  const user = User?.uid;
+  const user = User?.displayName;
 
   return (
     <MainContext.Provider value={{
