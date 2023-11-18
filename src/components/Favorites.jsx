@@ -55,14 +55,9 @@ const Favorites = () => {
     navigate("/");
   }
 
-  const handleDelete = async (cityName) => {
+  const handleDelete = async (item_id) => {
     try {
-      const res = await axios.delete('https://wiindy-backend.vercel.app/api/user/delete', {
-        data: {
-          uid: User.uid,
-          cityname: cityName,
-        },
-      });
+      const res = await axios.delete(`https://wiindy-backend.vercel.app/api/user/delete/${item_id}`);
       alert(res.data.msg);
     } catch (err) {
       console.error('Error while removing from favorites', err);
@@ -86,7 +81,7 @@ const Favorites = () => {
                   <div className="fav-temp">{item.temp}°C</div>
                   <div className="fav-weather">{item.weather}</div>
                 </div>
-                <div onClick={() => handleDelete(item.cityname)}><DeleteRounded /></div>
+                <div onClick={() => handleDelete(item._id)}><DeleteRounded /></div>
               </div>
             ))}
           </div>
