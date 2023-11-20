@@ -252,7 +252,7 @@ const Dashboard = () => {
               </div>
               <div className="unit-change-btn">
                 <button className="unit-btn" onClick={() => setToggle(true)}>Celcius</button>
-                <button className="unit-btn" onClick={() => setToggle(false)}>Farenheite</button>
+                <button className="unit-btn" onClick={() => setToggle(false)}>Farenheit</button>
               </div>
             </div>
             <div className="forecast-container"><Forecast /></div>

@@ -13,6 +13,7 @@ const Chart = () => {
   const [minX, setMinX] = useState(0);
   const [maxX, setMaxX] = useState(6);
   const [param, setParam] = useState(temperature);
+  const [toggle, setToggle] = useState("button1");
 
   useEffect(() => {
       setChart(chartRef.current);
@@ -93,14 +94,19 @@ const Chart = () => {
     }
   };
 
+  const setButton = (param,buttonName) => {
+    setParam(param);
+    setToggle(buttonName);
+  }
+
   return (
     <div className="chart-main">
       <div className="chart-options">
         <div className="chart-header">Summary</div>
         <div className="chart-btn">
-        <button onClick={()=>setParam(temperature)}>Temperature</button>
-        <button onClick={()=>setParam(humidity)}>Humidity</button>
-        <button onClick={()=>setParam(wind)}>Wind</button>
+        <button className={toggle === 'button1' ? "active": ""} onClick={()=>setButton(temperature,"button1")}>Temperature</button>
+        <button className={toggle === 'button2' ? "active": ""} onClick={()=>setButton(humidity,"button2")}>Humidity</button>
+        <button className={toggle === 'button3' ? "active": ""} onClick={()=>setButton(wind,"button3")}>Wind</button>
         </div>
       </div>
       <div className="chart-body">

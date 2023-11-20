@@ -9,6 +9,7 @@ const WeatherMap = () => {
   const API_key = import.meta.env.VITE_REACT_APP_WEATHERAPI_KEY;
   const [layer, setLayer] = useState("pressure_new");
   const mapRef = useRef(null);
+  const [activeButton, setActiveButton] = useState("Pressure");
   const layers = [
     { id: 0, name: "Pressure", type: "pressure_new" },
     { id: 1, name: "Clouds", type: "clouds_new" },
@@ -16,8 +17,9 @@ const WeatherMap = () => {
     { id: 3, name: "Temperature", type: "temp_new" },
   ]
 
-  const handleLayer = (newLayer) => {
+  const handleLayer = (newLayer,buttonName) => {
     setLayer(newLayer);
+    setActiveButton(buttonName);
   }
 
   useEffect(() => {
@@ -54,7 +56,7 @@ const WeatherMap = () => {
         <div className='left-part1'>
           {layers.map((item) => (
               <div className='btn-container1' key={item}>
-                <button onClick={() => handleLayer(item.type)}>{item.name}</button>
+                <button className={activeButton === item.name ? 'activated':''} onClick={() => handleLayer(item.type,item.name)}>{item.name}</button>
               </div>
           ))}
         </div>

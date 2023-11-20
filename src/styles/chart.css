@@ -18,10 +18,16 @@
     cursor: pointer;
     border: none;
     border-radius: 12px;
+    color: white;
+    background-color: #4071AC;
+    transition: background-color 0.3s ease; 
 }
 button:hover{
-    background-color: grey;
-    color:white;
+    background-color: rgba(224, 224, 224, 0.3);
+}
+.chart-btn button.active{
+    background-color: #FFD02C;
+    color: #444444;
 }
 .chart-body{
     min-width: 800px;

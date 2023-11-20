@@ -22,7 +22,7 @@
     margin: 0px 10px 10px 10px;
     background: linear-gradient(to right, #3467A8, #3C6AA6, #3767A5);
 }
-.btn-container1 button{
+.btn-container1 button {
     height: 100px;
     width: 100%;
     border: none;
@@ -34,7 +34,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s ease; 
 }
+.btn-container1 button:hover {
+    background-color: rgba(224, 224, 224, 0.3);
+}
+.btn-container1 button.activated {
+    background-color: rgba(224, 224, 224, 0.5);
+}
+
 .map-container1 .right-part1{
     padding: 20px 0px 0px 0px;
     background: none;
