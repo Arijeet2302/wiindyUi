@@ -84,3 +84,9 @@
   color: #313131;
   margin: 30px 0px 0px 0px;
 }
+.footer .message{
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

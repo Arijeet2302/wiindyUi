@@ -7,6 +7,7 @@ import Favorites from "./components/Favorites"
 import Signup from "./components/Signup"
 import Login from "./components/Login"
 import Map from "./components/Map"
+import ForgotPassword from "./components/ForgotPassword";
 import "./App.css"
 import Profile from "./components/Profile";
 
@@ -45,6 +46,7 @@ function App() {
               <Route exact path="/favorites" element={<Favorites />} />
               <Route exact path="/map" element={<Map />} />
               <Route exact path={`/${user}`} element={<Profile />} />
+              <Route exact path={`/user/password/reset`} element={<ForgotPassword />} />
             </Routes>
           </div>
         </div>

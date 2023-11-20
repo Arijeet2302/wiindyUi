@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../services/firebase";
@@ -62,6 +62,9 @@ const Login= ()=> {
             Already have an account?{" "}
             <span>
               <Link to="/signup">Sign up</Link>
+            </span>
+            <span className={styles.forgotPass}>
+              <Link to={`/user/password/reset`}>Forgot password? </Link>
             </span>
           </p>
         </div>
