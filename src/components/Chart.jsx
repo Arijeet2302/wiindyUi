@@ -12,12 +12,13 @@ const Chart = () => {
   const [chart, setChart] = useState(null);
   const [minX, setMinX] = useState(0);
   const [maxX, setMaxX] = useState(6);
-  const [param, setParam] = useState(temperature);
+  const [param, setParam] = useState({});
   const [toggle, setToggle] = useState("button1");
 
   useEffect(() => {
       setChart(chartRef.current);
-    }, [])
+      setParam(temperature);
+    }, [temperature])
     
   const setTime = (day) => {
     if (day) {
