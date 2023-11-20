@@ -23,6 +23,7 @@ const Dashboard = () => {
   const [toggle, setToggle] = useState(true);
   const [favicon, setFavicon] = useState(true);
   const buttonRef = useRef(null);
+  const [error, setError] = useState("");
 
   const API_key = import.meta.env.VITE_REACT_APP_WEATHERAPI_KEY;
 
@@ -47,6 +48,7 @@ const Dashboard = () => {
           })
           .catch((e) => {
             console.log(e);
+            setError("Couldn't Find Your Current Location");
           });
       });
     }
@@ -66,6 +68,7 @@ const Dashboard = () => {
         setCity('');
       } catch (error) {
         console.error('Error fetching data:', error);
+        setError("Couldn't Find Your City");
       }
     }
   };
@@ -88,6 +91,7 @@ const Dashboard = () => {
           setUserWeather(data.weather[0]);
         } catch (error) {
           console.error('Error fetching data:', error);
+          setError("Couldn't Fetch Weather Data For Your Current Location");
         }
       };
 
@@ -178,8 +182,10 @@ const Dashboard = () => {
     const fetchFavoritesAndCheckFavoriteStatus = async () => {
       if (User) {
         try {
-          const res = await axios.post('https://wiindy-backend.vercel.app/api/user/favorites', {
-            uid: User.uid,
+          const res = await axios.get('https://wiindy-backend.vercel.app/api/user/favorites', {
+            params: {
+              uid: User?.uid,
+            }
           });
           const favoriteCities = res.data;
           const isFavorite = favoriteCities.some(item => item.cityname === GlobalCity);
@@ -292,7 +298,10 @@ const Dashboard = () => {
             </div>
             <div className="chart-container"><Chart /></div>
           </div>
-        </>) : (<div><ErrorPage /></div>)}
+        </>) : (
+          <div>
+          <ErrorPage error={error}/></div>
+          )}
     </div>
   )
 }

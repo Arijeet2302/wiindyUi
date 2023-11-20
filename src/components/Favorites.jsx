@@ -15,8 +15,10 @@ const Favorites = () => {
 
 
   useEffect(() => {
-    axios.post("https://wiindy-backend.vercel.app/api/user/favorites", {
-      uid: User?.uid
+    axios.get("https://wiindy-backend.vercel.app/api/user/favorites", {
+      params : {
+        uid: User?.uid
+      }
     })
       .then((res) => {
         setFavItems(res.data);
