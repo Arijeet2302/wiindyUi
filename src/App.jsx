@@ -18,7 +18,7 @@ function App() {
   const [GlobalCity, setGlobalCity] = useState("");
   const [temperature, setTemp] = useState({label: "Temperature", title : "In Celcius (°C)"});
   const [wind, setWind] = useState({label: "Wind Speed", title : "In Km/Hour"});
-  const [humidity, setHumidity] = useState({label: "Temperature", title : "In Pecentage (%)"});
+  const [humidity, setHumidity] = useState({label: "Humidity", title : "In Pecentage (%)"});
   const [ChartDay, setChartDay] = useState([]);
 
   const user = User?.displayName;
