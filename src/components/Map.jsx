@@ -40,8 +40,9 @@ const WeatherMap = () => {
         }),
       ],
       view: new View({
-        center: [0, 0],
-        zoom: 2.5,
+        center: [87, 23.67], 
+        zoom: 10, 
+        projection: 'EPSG:4326',
       }),
     });
     return () => {
