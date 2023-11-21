@@ -299,7 +299,7 @@ const Dashboard = () => {
             <div className="chart-container"><Chart /></div>
           </div>
         </>) : (
-          <div>
+          <div className="error-container">
           <ErrorPage error={error}/></div>
           )}
     </div>

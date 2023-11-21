@@ -1,5 +1,7 @@
 .error-div-main{
     color: white;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,4 +26,12 @@
     background-color: limegreen;
     color: white;
     cursor: pointer;
+}
+.loading-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loading-page{
+    font-size: 60px;
 }

@@ -213,4 +213,9 @@
     margin: 20px 0px 20px 15px ;
     border-radius: 12px;
 }
-
+.error-container{
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
