@@ -5,7 +5,9 @@
     justify-content: center;
     align-items: center;
   }
-  
+  .heading{
+    margin: 0px;
+  }
   .innerBox {
     min-width: 480px;
     height: fit-content;
@@ -34,7 +36,7 @@
   .footer {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 0px;
   }
   
   .footer .error {
@@ -66,12 +68,16 @@
     background-color: #085fb1;
   }
   
-  .footer p {
+  .footer  {
     font-weight: 700;
     color: #000;
   }
-  
-  .footer p span a {
+  .footer .already{
+    padding-top: 10px ;
+    display: flex;
+    justify-content: center;
+  }
+  .footer  span a {
     font-weight: bold;
     color: #085fb1;
     letter-spacing: 1px;

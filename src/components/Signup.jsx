@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../services/firebase";
+import GoogleSignIn from "../services/GoogleSignIn";
 import styles from "../styles/signup.module.css";
 
 const Signup = () => {
@@ -73,12 +74,13 @@ const Signup = () => {
           <button onClick={handleSubmission} disabled={submitButtonDisabled}>
             Signup
           </button>
-          <p>
+          <GoogleSignIn/>
+          <div className={styles.already}>
             Already have an account?{" "}
             <span>
               <Link to="/login">Login</Link>
             </span>
-          </p>
+          </div>
         </div>
       </div>
     </div>

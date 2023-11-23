@@ -1,0 +1,27 @@
+.line{
+    background-color: rgb(177, 177, 177);
+    height: 0.1px;
+}
+.google-main-div{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    border: #085fb1 solid 1px;
+    color: #085fb1;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 7px 0px 7px 0px;
+    width: 100%;
+    transition: 100ms;
+    cursor: pointer;
+}
+.google-icon svg {
+    width: 24px; 
+    height: 24px;
+    margin-right: 8px;
+}
+.sign-in-with-google{
+    display: flex;
+    align-items: center;
+}

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../services/firebase";
 import styles from "../styles/login.module.css";
+import GoogleSignIn from "../services/GoogleSignIn";
 
 const Login= ()=> {
   const navigate = useNavigate();
@@ -59,12 +60,15 @@ const Login= ()=> {
             Login
           </button>
           <p>
+            <span className={styles.forgotPass}>
+              <Link to={`/user/password/reset`}>Forgot password? </Link>
+            </span>
+          </p>
+            <GoogleSignIn/>
+          <p>
             Already have an account?{" "}
             <span>
               <Link to="/signup">Sign up</Link>
-            </span>
-            <span className={styles.forgotPass}>
-              <Link to={`/user/password/reset`}>Forgot password? </Link>
             </span>
           </p>
         </div>
