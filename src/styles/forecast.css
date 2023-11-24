@@ -45,12 +45,17 @@
 .forecast-content-container{
     height: 175px;
     width : 150px;
-    margin-inline: 10px;
+    margin-inline: 10px 20px;
 }
 .forecast-day{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.forecast-img-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 img{
     width: 60px;
@@ -67,7 +72,8 @@ img{
     justify-content: center;
 }
 .forecast-type{
-    margin-inline: 7px;
+    /* margin-inline: 7px; */
     display: flex;
     align-items: center;
+    justify-content: center;
 }

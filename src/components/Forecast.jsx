@@ -93,7 +93,9 @@ useEffect(()=>{
       { hourlyForecast.map((item)=>(
         <div className="forecast-content-container" key={item.id}>
             <div className="forecast-day">{setDay(item.dt_txt)}</div>
+            <div className="forecast-img-div">
             <img alt="icon" src={`https://openweathermap.org/img/w/${item.weather[0].icon}.png`}/>
+            </div>
             <div className="forecast-temp">{Math.round(item.main.temp)}
             {!LocalUnit ? (<div>°C</div>) :(<div>°F</div>)}
             </div>
@@ -106,7 +108,9 @@ useEffect(()=>{
         { dailyForecast.map((item)=>(
         <div className="forecast-content-container" key={item.id}>
             <div className="forecast-day">{setDaily(item.dt_txt)}</div>
+            <div className="forecast-img-div">
             <img alt="icon" src={`https://openweathermap.org/img/w/${item.weather[0].icon}.png`}/>
+            </div>
             <div className="forecast-temp">{Math.round(item.main.temp)}
             {!LocalUnit ? (<div>°C</div>) :(<div>°F</div>)}
             </div>
