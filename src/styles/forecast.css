@@ -19,12 +19,14 @@
     width: 50px;
     cursor: pointer;
     margin : 2px 3px 2px 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
 .daily-light{
     background-color: none;
     cursor: pointer;
     width: 50px;
     margin : 2px 3px 2px 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
 .daily{
     margin :1px 1px 2px 2px;

@@ -222,7 +222,7 @@ const Dashboard = () => {
               <div>{User?.displayName}</div>
             </div>
           ) : (
-            <div className="login-btn"><button onClick={() => navigate("/login")}>Login</button></div>
+            <div className="login-btn"><button id="btn" onClick={() => navigate("/login")}>Login</button></div>
           )}
         </div>
       </div>

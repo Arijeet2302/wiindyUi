@@ -46,7 +46,7 @@
 .login-btn{
     padding-left : 770px;
 }
-.profile-div button{
+.profile-div #btn{
     border-radius: 5px;
     font-size: 15px;
     font-weight: bold;
@@ -58,6 +58,11 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+.profile-div #btn:hover {
+    background-color: rgb(141, 140, 140); 
+    color: white; 
 }
 .middle-part{
     display: flex;
@@ -128,9 +133,11 @@
     cursor: pointer;
     border: none;
     border-radius: 12px;
+    transition: background-color 0.3s, color 0.3s;
 }
 .unit-btn:hover{
     background-color: gray;
+    color: white;
 }
 .current-weather-details{
     background-color: #4976B1;
