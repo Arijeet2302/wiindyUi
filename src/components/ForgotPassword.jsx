@@ -33,6 +33,7 @@ const ForgotPassword = () => {
   
 
   return (
+    <div className={styles.container}>
     <div className={styles.innerBox}>
       <h2 className={styles.heading}>Forgot Password</h2>
       <input
@@ -45,6 +46,7 @@ const ForgotPassword = () => {
       <button onClick={handleResetPassword}>Reset Password</button>
       <p className={styles.message}>{message}</p>
       </div>
+    </div>
     </div>
   );
 };
