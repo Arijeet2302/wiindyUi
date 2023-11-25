@@ -8,6 +8,7 @@ import { BsThermometerSun, BsEyeFill } from "react-icons/bs";
 import { TbSunrise, TbSunset } from "react-icons/tb";
 import { RiWindyFill } from "react-icons/ri";
 import MainContext from "../services/MainContext";
+import { format, parse } from 'date-fns';
 import Forecast from "./Forecast";
 import Chart from "./Chart";
 import ErrorPage from "./ErrorPage";
@@ -145,36 +146,39 @@ const Dashboard = () => {
   }, [userWeather]);
 
   const currentday = () => {
-    const options = {
-      timeZone: 'Asia/Kolkata',
-      weekday: 'long',
-      month: 'long',
-      day: 'numeric',
-    };
-    const currentTime = new Date().toLocaleString('en-US', options);
-    return currentTime;
+    const utc_seconds = parseInt(weather.dt, 10) + parseInt(weather.timezone, 10);
+    const utc_milliseconds = utc_seconds * 1000;
+    const local_date = new Date(utc_milliseconds).toUTCString();
+    const inputDate = parse(local_date, 'EEE, dd MMM yyyy HH:mm:ss \'GMT\'', new Date());
+    const formattedDate = format(inputDate, 'EEE, dd MMM h:mm a');
+    return formattedDate;
   };
 
   const setSun = (time) => {
-    const timeValue = new Date(time * 1000);
-    const optns = {
-      hour: 'numeric',
-      minute: 'numeric',
-    };
-    return timeValue.toLocaleTimeString(undefined, optns);
+    const utc_seconds = parseInt(time, 10) + parseInt(weather.timezone, 10);
+    const utc_milliseconds = utc_seconds * 1000;
+    const local_date = new Date(utc_milliseconds).toUTCString();
+    const inputDate = parse(local_date, 'EEE, dd MMM yyyy HH:mm:ss \'GMT\'', new Date());
+    const formattedDate = format(inputDate, 'hh:mm a');
+    return formattedDate;
   };
 
   const handleAddFav = async () => {
-    try {
-      const res = await axios.post('https://wiindy-backend.vercel.app/api/user/add', {
-        username: User.displayName,
-        uid: User.uid,
-        cityname: GlobalCity,
-      });
-      setFavicon(false);
-      alert(res.data.msg);
-    } catch (err) {
-      console.error('Error while adding to favorites', err);
+    if(User){
+      try {
+        const res = await axios.post('https://wiindy-backend.vercel.app/api/user/add', {
+          username: User.displayName,
+          uid: User.uid,
+          cityname: GlobalCity,
+        });
+        setFavicon(false);
+        alert(res.data.msg);
+      } catch (err) {
+        console.error('Error while adding to favorites', err);
+      }
+    }else{
+      alert("Please Login First");
+      navigate("/login");
     }
   }
 
@@ -193,6 +197,8 @@ const Dashboard = () => {
         } catch (err) {
           console.log('Error while fetching favorites', err);
         }
+      }else{
+        setFavicon(true);
       }
     };
 
@@ -271,7 +277,9 @@ const Dashboard = () => {
               <div className="details-div">
                 <div className="deatils-icon"><RiWindyFill size={20} /></div>
                 <div className="details">Wind Speed</div>
-                <div className="details-value">{Math.round(weather.wind.speed * 3.6)} KM/hr</div>
+                { toggle ? (<div className="details-value">{Math.round(weather.wind.speed * 3.6)} KM/hr</div>)
+                :(<div className="details-value">{Math.round(weather.wind.speed)} Miles/hr</div>)
+                }
               </div>
               <div className="details-div">
                 <div className="deatils-icon"><BsEyeFill size={20} /></div>
