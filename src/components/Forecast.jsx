@@ -31,7 +31,7 @@ const Forecast = () => {
           const response = res.list;
 
           const tempContent = response.map((item) => Math.round(item.main?.temp));
-          const windContent = response.map((item) => item.wind?.speed);
+          const windContent = response.map((item) => Math.round(item.wind?.speed));
           const humidityContent = response.map((item) => item.main?.humidity);
           const chartDayContent = response.map((item) => item.dt_txt);
 

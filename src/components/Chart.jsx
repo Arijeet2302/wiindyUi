@@ -7,18 +7,28 @@ import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Filler, Tooltip);
 
 const Chart = () => {
-  const { temperature, wind,  humidity, ChartDay } = useContext(MainContext);
+  const { temperature, wind,  humidity, ChartDay, units } = useContext(MainContext);
   const chartRef = useRef(null);
   const [chart, setChart] = useState(null);
   const [minX, setMinX] = useState(0);
   const [maxX, setMaxX] = useState(6);
   const [param, setParam] = useState({});
   const [toggle, setToggle] = useState("button1");
+  const [title, setTitle] = useState("In Celcius (°C)");
 
   useEffect(() => {
       setChart(chartRef.current);
       setParam(temperature);
-    }, [temperature])
+      setToggle("button1");
+    },[temperature])
+
+  useEffect(()=>{
+    if (units === "metric") {
+      setTitle(param.titleMetric);
+    }else{
+      setTitle(param.titleImperial);
+    }
+  },[units,param])
     
   const setTime = (day) => {
     if (day) {
@@ -54,7 +64,7 @@ const Chart = () => {
         grid : {display:false},
         title : {
           display : true,
-          text : param.title,
+          text : title,
           color : "white",
         }
       }

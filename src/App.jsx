@@ -17,9 +17,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [units, setUnits] = useState("metric");
   const [GlobalCity, setGlobalCity] = useState("");
-  const [temperature, setTemp] = useState({label: "Temperature", title : "In Celcius (°C)"});
-  const [wind, setWind] = useState({label: "Wind Speed", title : "In Km/Hour"});
-  const [humidity, setHumidity] = useState({label: "Humidity", title : "In Pecentage (%)"});
+  const [temperature, setTemp] = useState({label: "Temperature", titleMetric : "In Celcius (°C)", titleImperial : "In Farenheit (°F)"});
+  const [wind, setWind] = useState({label: "Wind Speed", titleMetric : "In Meter/sec", titleImperial : "In Miles/Hour"});
+  const [humidity, setHumidity] = useState({label: "Humidity", titleMetric : "In Pecentage (%)", titleImperial : "In Pecentage (%)"});
   const [ChartDay, setChartDay] = useState([]);
 
   const user = User?.displayName;
