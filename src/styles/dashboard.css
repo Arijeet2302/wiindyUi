@@ -80,11 +80,11 @@
     white-space: nowrap; 
     overflow: hidden;    
     text-overflow: ellipsis; 
+    justify-content: space-between;
 }
 .favicon{
-    width: 200px;
-    padding: 5px 0px 0px 70px;
-    cursor: pointer; 
+    padding: 5px 15px 0px 0px;
+    cursor: pointer;
 }
 .main-city{
     padding: 20px 0px 0px 20px;

@@ -102,48 +102,30 @@ const Dashboard = () => {
 
   useEffect(() => {
     const id = userWeather?.id;
-    switch (id) {
-      case 721:
+
+    if (id === 721) {
         setIcon(object.haze);
-        break;
-      case 711:
+    } else if (id === 711 || id === 741) {
         setIcon(object.foggy);
-        break;
-      case 741:
-        setIcon(object.foggy);
-        break;
-      case parseInt(id / 100) === 5:
+    } else if (parseInt(id / 100) === 5) {
         setIcon(object.rain);
-        break;
-      case parseInt(id / 100) === 2:
+    } else if (parseInt(id / 100) === 2) {
         setIcon(object.thunderstorm);
-        break;
-      case 802:
+    } else if (id === 802 || id === 803 || id === 804) {
         setIcon(object.clouds);
-        break;
-      case 804:
-        setIcon(object.clouds);
-        break;
-      case 803:
-        setIcon(object.clouds);
-        break;
-      case 801:
+    } else if (id === 801) {
         setIcon(object.cloudy);
-        break;
-      case parseInt(id / 100) === 6:
+    } else if (parseInt(id / 100) === 6) {
         setIcon(object.snow);
-        break;
-      case parseInt(id / 100) === 3:
+    } else if (parseInt(id / 100) === 3) {
         setIcon(object.rain);
-        break;
-      case 800:
+    } else if (id === 800) {
         setIcon(object.sunny);
-        break;
-      default:
+    } else {
         setIcon(object.sunny);
-        break;
     }
-  }, [userWeather]);
+}, [userWeather]);
+
 
   const currentday = () => {
     const utc_seconds = parseInt(weather.dt, 10) + parseInt(weather.timezone, 10);
@@ -239,7 +221,7 @@ const Dashboard = () => {
               <div className="main-city">
                 <div className="middle-header">Current Weather</div>
                 <div className="maincityname">
-                  <h2>{GlobalCity}</h2>
+                  <h2>{GlobalCity}, {weather.sys.country}</h2>
                   {favicon ? (<div className="favicon" onClick={handleAddFav}>+ Add to favorites</div>)
                     : (<div></div>)}
                 </div>
