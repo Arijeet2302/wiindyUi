@@ -118,7 +118,7 @@ const WeatherMap = () => {
       <div className='map-container1'>
         <div className='left-part1'>
           {layers.map((item) => (
-              <div className='btn-container1' key={item}>
+              <div className='btn-container1' key={item.id}>
                 <button className={activeButton === item.name ? 'activated':''} onClick={() => handleLayer(item)}>{item.name}</button>
               </div>
           ))}
