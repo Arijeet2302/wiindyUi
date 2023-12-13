@@ -87,8 +87,8 @@ useEffect(()=>{
         </div>
       </div>
       <div className="forecast-content">
-      { Forecast.map((item)=>(
-        <div className="forecast-content-container" key={item.id}>
+      { Forecast.map((item,index)=>(
+        <div className="forecast-content-container" key={index} data={item}>
             <div className="forecast-day">{setDay(item.dt_txt,Forecast.length)}</div>
             <div className="forecast-img-div">
             <img alt="icon" src={`https://openweathermap.org/img/w/${item.weather[0].icon}.png`}/>

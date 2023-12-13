@@ -37,23 +37,30 @@ const Dashboard = () => {
   }, [toggle, setUnits]);
 
   useEffect(() => {
-    if (navigator.geolocation && GlobalCity === '') {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-
-        fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${API_key}`)
-          .then((res) => res.json())
-          .then((res) => {
-            setGlobalCity(res[0]?.name);
-          })
-          .catch((e) => {
-            console.log(e);
-            setError("Couldn't Find Your Current Location");
+    const fetchUserLocation = async () => {
+      try {
+        if (navigator.geolocation && GlobalCity === '') {
+          const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
           });
-      });
-    }
-  }, [API_key, setGlobalCity, GlobalCity]);
+  
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+  
+          const response = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${API_key}`);
+          const data = await response.json();
+  
+          setGlobalCity(data[0]?.name);
+        }
+      } catch (error) {
+        console.error(error);
+        setError("Couldn't Find Your Current Location");
+      }
+    };
+  
+    fetchUserLocation();
+  }, [GlobalCity, API_key, setGlobalCity]);
+  
 
   const searchCity = async () => {
     if (city) {
@@ -104,31 +111,31 @@ const Dashboard = () => {
     const id = userWeather?.id;
 
     if (id === 721) {
-        setIcon(object.haze);
+      setIcon(object.haze);
     } else if (id === 711 || id === 741) {
-        setIcon(object.foggy);
+      setIcon(object.foggy);
     } else if (parseInt(id / 100) === 5) {
-        setIcon(object.rain);
+      setIcon(object.rain);
     } else if (parseInt(id / 100) === 2) {
-        setIcon(object.thunderstorm);
+      setIcon(object.thunderstorm);
     } else if (id === 802 || id === 803 || id === 804) {
-        setIcon(object.clouds);
+      setIcon(object.clouds);
     } else if (id === 801) {
-        setIcon(object.cloudy);
+      setIcon(object.cloudy);
     } else if (parseInt(id / 100) === 6) {
-        setIcon(object.snow);
+      setIcon(object.snow);
     } else if (parseInt(id / 100) === 3) {
-        setIcon(object.rain);
+      setIcon(object.rain);
     } else if (id === 800) {
-        setIcon(object.sunny);
+      setIcon(object.sunny);
     } else {
-        setIcon(object.sunny);
+      setIcon(object.sunny);
     }
-}, [userWeather]);
+  }, [userWeather]);
 
 
-  const currentday = () => {
-    const utc_seconds = parseInt(weather.dt, 10) + parseInt(weather.timezone, 10);
+  const currentday = (time) => {
+    const utc_seconds = parseInt(time, 10) + parseInt(weather.timezone, 10);
     const utc_milliseconds = utc_seconds * 1000;
     const local_date = new Date(utc_milliseconds).toUTCString();
     const inputDate = parse(local_date, 'EEE, dd MMM yyyy HH:mm:ss \'GMT\'', new Date());
@@ -137,16 +144,13 @@ const Dashboard = () => {
   };
 
   const setSun = (time) => {
-    const utc_seconds = parseInt(time, 10) + parseInt(weather.timezone, 10);
-    const utc_milliseconds = utc_seconds * 1000;
-    const local_date = new Date(utc_milliseconds).toUTCString();
-    const inputDate = parse(local_date, 'EEE, dd MMM yyyy HH:mm:ss \'GMT\'', new Date());
+    const inputDate = new Date(currentday(time));
     const formattedDate = format(inputDate, 'hh:mm a');
     return formattedDate;
   };
 
   const handleAddFav = async () => {
-    if(User){
+    if (User) {
       try {
         const res = await axios.post('https://wiindy-backend.vercel.app/api/user/add', {
           username: User.displayName,
@@ -158,7 +162,7 @@ const Dashboard = () => {
       } catch (err) {
         console.error('Error while adding to favorites', err);
       }
-    }else{
+    } else {
       alert("Please Login First");
       navigate("/login");
     }
@@ -179,7 +183,7 @@ const Dashboard = () => {
         } catch (err) {
           console.log('Error while fetching favorites', err);
         }
-      }else{
+      } else {
         setFavicon(true);
       }
     };
@@ -225,7 +229,7 @@ const Dashboard = () => {
                   {favicon ? (<div className="favicon" onClick={handleAddFav}>+ Add to favorites</div>)
                     : (<div></div>)}
                 </div>
-                <div className="main-time">{currentday()}</div>
+                <div className="main-time">{currentday(weather.dt)}</div>
               </div>
               <div className="basic-weather">
                 <img className="weather-icon" src={icon} />
@@ -259,8 +263,8 @@ const Dashboard = () => {
               <div className="details-div">
                 <div className="deatils-icon"><RiWindyFill size={20} /></div>
                 <div className="details">Wind Speed</div>
-                { toggle ? (<div className="details-value">{Math.round(weather.wind.speed * 3.6)} KM/hr</div>)
-                :(<div className="details-value">{Math.round(weather.wind.speed)} Miles/hr</div>)
+                {toggle ? (<div className="details-value">{Math.round(weather.wind.speed * 3.6)} KM/hr</div>)
+                  : (<div className="details-value">{Math.round(weather.wind.speed)} Miles/hr</div>)
                 }
               </div>
               <div className="details-div">
@@ -289,9 +293,9 @@ const Dashboard = () => {
             <div className="chart-container"><Chart /></div>
           </div>
         </>) : (
-          <div className="error-container">
-          <ErrorPage error={error}/></div>
-          )}
+        <div className="error-container">
+          <ErrorPage error={error} /></div>
+      )}
     </div>
   )
 }

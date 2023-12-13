@@ -15,18 +15,23 @@ const Favorites = () => {
 
 
   useEffect(() => {
-    axios.get("https://wiindy-backend.vercel.app/api/user/favorites", {
-      params : {
-        uid: User?.uid
+    const fetchUserFavorites = async () => {
+      try {
+        const response = await axios.get("https://wiindy-backend.vercel.app/api/user/favorites", {
+          params: {
+            uid: User?.uid
+          }
+        });
+  
+        setFavItems(response.data);
+      } catch (error) {
+        console.error("Error while showing data", error);
       }
-    })
-      .then((res) => {
-        setFavItems(res.data);
-      })
-      .catch((err) => {
-        console.log("error while showing data", err);
-      })
+    };
+  
+    fetchUserFavorites();
   }, [User]);
+  
 
 
   useEffect(() => {
@@ -49,7 +54,7 @@ const Favorites = () => {
     };
 
     fetchData();
-  }, [favItems]);
+  }, [favItems,API_key]);
 
 
   const HandleShow = (name) => {
