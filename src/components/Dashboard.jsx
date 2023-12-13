@@ -24,6 +24,7 @@ const Dashboard = () => {
   const [toggle, setToggle] = useState(true);
   const [favicon, setFavicon] = useState(true);
   const buttonRef = useRef(null);
+  const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState("");
 
   const API_key = import.meta.env.VITE_REACT_APP_WEATHERAPI_KEY;
@@ -43,13 +44,13 @@ const Dashboard = () => {
           const position = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject);
           });
-  
+
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
-  
+
           const response = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${API_key}`);
           const data = await response.json();
-  
+
           setGlobalCity(data[0]?.name);
         }
       } catch (error) {
@@ -57,17 +58,43 @@ const Dashboard = () => {
         setError("Couldn't Find Your Current Location");
       }
     };
-  
+
     fetchUserLocation();
   }, [GlobalCity, API_key, setGlobalCity]);
-  
+
+
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      const options = {
+        method: 'GET',
+        url: 'https://place-autocomplete1.p.rapidapi.com/autocomplete/json',
+        params: {
+          input: city,
+          radius: '500'
+        },
+        headers: {
+          'X-RapidAPI-Key': 'd816d3d66bmsh61000e59c1cf930p1f570ajsn9368d130bba2',
+          'X-RapidAPI-Host': 'place-autocomplete1.p.rapidapi.com'
+        }
+      };
+
+      try {
+        const response = await axios.request(options);
+        setSuggestions(response.data?.predictions);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchSuggestions();
+  }, [city, API_key]);
 
   const searchCity = async () => {
     if (city) {
       try {
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=${units}`
-        );
+          );
         const data = await response.json();
         setWeather(data);
         setUserWeather(data.weather[0]);
@@ -80,7 +107,7 @@ const Dashboard = () => {
       }
     }
   };
-
+  
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       searchCity();
@@ -193,7 +220,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="dashboard">
+    <div className="dashboard" onClick={()=>setSuggestions([])}>
       <div className="upper-part">
         <div className="searchbar">
           <div className="search-icon"><Search ref={buttonRef} onClick={searchCity} /></div>
@@ -207,6 +234,19 @@ const Dashboard = () => {
             value={city}
           />
         </div>
+        {suggestions.length !== 0 ? (
+        <div className="city-suggestions-container">
+          {suggestions.map((item) => (
+            <div key={item.place_id} >
+              <p className="city-suggestion"
+              onClick={() => setCity(item.description)}
+              onKeyDown={handleKeyPress}
+              tabIndex={0}>{item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+        ):(<div></div>)}
         <div className="profile-div">
           {isLoggedIn ? (
             <div className="profile-name">

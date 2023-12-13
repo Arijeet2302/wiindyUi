@@ -8,6 +8,7 @@
     width: 100%;
     display: flex;
     margin: 10px 20px 0px 20px; 
+    position: relative;
 }
 .searchbar{
     background-color: #204D88;
@@ -30,6 +31,19 @@
 }
 .searchbar input::placeholder{
     color: white;
+}
+.city-suggestions-container{
+    width: 300px;
+    position: absolute;
+    background-color: #4976B1;
+    border-radius: 10px;
+    padding: 10px;
+    top: 70px;
+    left: 20px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.city-suggestion{
+    cursor: pointer;
 }
 .profile-div{
     height: 30px;
