@@ -8,6 +8,7 @@ import axios from "axios";
 const Favorites = () => {
   const [favItems, setFavItems] = useState([]);
   const [NewFavItems, setNewFavItems] = useState([]);
+  const [show, setShow] = useState("Loading...");
   const { User, setGlobalCity } = useContext(MainContext);
   const navigate = useNavigate();
 
@@ -24,8 +25,10 @@ const Favorites = () => {
         });
   
         setFavItems(response.data);
+        setShow("No favorites yet");
       } catch (error) {
         console.error("Error while showing data", error);
+        setShow("No favorites yet");
       }
     };
   
@@ -79,7 +82,7 @@ const Favorites = () => {
         <div>{User?.displayName}</div>
       </div>
       {favItems.length === 0 ?
-        <div className="no-favs">No favorites yet</div> : (
+        <div className="no-favs">{show}</div> : (
           <div className="favorites-main-content">
             {NewFavItems.map((item) => (
               <div className="fav-body" key={item._id} onClick={() => HandleShow(item.cityname)}>
