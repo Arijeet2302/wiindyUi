@@ -220,7 +220,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="dashboard" onClick={()=>setSuggestions([])}>
+    <div className="dashboard" >
       <div className="upper-part">
         <div className="searchbar">
           <div className="search-icon"><Search ref={buttonRef} onClick={searchCity} /></div>
